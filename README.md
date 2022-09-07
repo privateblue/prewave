@@ -10,6 +10,11 @@ Alternatively, a jar file can be assembled using `sbt assembly`, which then can 
 java -jar target/scala-2.13/prewave.jar
 ```
 
+To run unit tests, use
+```
+sbt test
+```
+
 ### How it works
 
 On first run, the app retrieves a list of match terms from the API, and stores them in a local file named `terms`, to save API calls on every subsequent run. This optimization is possible because the output of the API is always the same. To refresh the list of terms, simply delete this file.
@@ -33,6 +38,7 @@ One easy way to test all this is to `tail -f matches` in one terminal, and run t
 ### Notes
 
 - A missing feature of this implementation is to lock the `matches` file for the duration of a run. This means that currently, running several instances of the app in parallel might result in duplicate Alert IDs in the file.
+- Currently, there are only a few number of unit tests testing the match logic. Ideally, there should also be integration tests to test if files are created, read and write correctly, and that no duplicate Alert IDs are recorded in the `matches` file.
 - Another possible improvement to the code could be representing match results by their own type, instead of just passing a `Map[String, List[Int]]` around.
 - Furthermore, the API details should be read from a configuration file, instead of being hardcoded.
 - Logging and more systematic error handling are areas that could also benefit from additional work.
