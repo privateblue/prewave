@@ -4,6 +4,8 @@ val catsVersion = "2.8.0"
 val catsEffectVersion = "3.3.14"
 val http4sVersion = "0.23.15"
 val circeVersion = "0.14.2"
+val junitVersion = "0.11"
+val scalatestVersion = "3.2.12"
 
 lazy val root = project
   .in(file("."))
@@ -19,7 +21,10 @@ lazy val root = project
       "org.http4s" %% "http4s-ember-server" % http4sVersion,
       "org.http4s" %% "http4s-ember-client" % http4sVersion,
       "org.http4s" %% "http4s-circe" % http4sVersion,
-      "io.circe" %% "circe-generic" % circeVersion
+      "io.circe" %% "circe-generic" % circeVersion,
+      "com.novocode" % "junit-interface" % junitVersion % "test",
+      "org.scalatest" %% "scalatest" % scalatestVersion % "test",
+      "org.scalatest" %% "scalatest-flatspec" % scalatestVersion % "test"
     ),
     assembly / mainClass := Some("prewave.Main"),
     assembly / assemblyJarName := "prewave.jar"
