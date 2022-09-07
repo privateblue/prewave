@@ -20,5 +20,7 @@ lazy val root = project
       "org.http4s" %% "http4s-ember-client" % http4sVersion,
       "org.http4s" %% "http4s-circe" % http4sVersion,
       "io.circe" %% "circe-generic" % circeVersion
-    )
+    ),
+    assembly / mainClass := Some("prewave.Main"),
+    assembly / assemblyJarName := "prewave.jar"
   )
